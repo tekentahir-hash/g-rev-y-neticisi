@@ -41,14 +41,30 @@ fun AddTaskScreen(onBack: () -> Unit, viewModel: TaskViewModel = viewModel()) {
             )
 
             Text("Tekrar Sıklığı", style = MaterialTheme.typography.titleSmall)
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf(
-                    TaskFrequency.DAILY        to "Günlük",
-                    TaskFrequency.EVERY_2_DAYS to "2 Günlük",
-                    TaskFrequency.EVERY_3_DAYS to "3 Günlük",
-                    TaskFrequency.WEEKLY       to "Haftalık"
-                ).forEach { (f, label) ->
-                    FilterChip(selected = freq == f, onClick = { freq = f }, label = { Text(label) })
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = freq == TaskFrequency.DAILY,
+                        onClick = { freq = TaskFrequency.DAILY },
+                        label = { Text("Günlük") }
+                    )
+                    FilterChip(
+                        selected = freq == TaskFrequency.EVERY_2_DAYS,
+                        onClick = { freq = TaskFrequency.EVERY_2_DAYS },
+                        label = { Text("2 Günlük") }
+                    )
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = freq == TaskFrequency.EVERY_3_DAYS,
+                        onClick = { freq = TaskFrequency.EVERY_3_DAYS },
+                        label = { Text("3 Günlük") }
+                    )
+                    FilterChip(
+                        selected = freq == TaskFrequency.WEEKLY,
+                        onClick = { freq = TaskFrequency.WEEKLY },
+                        label = { Text("Haftalık") }
+                    )
                 }
             }
 
